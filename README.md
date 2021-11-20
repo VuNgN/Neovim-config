@@ -1,12 +1,7 @@
 # Neovim
 
-![Untitled](Neovim%204e2a476d161641fb8c71757ce3dae13a/Untitled.png)
-
-![Untitled](Neovim%204e2a476d161641fb8c71757ce3dae13a/Untitled%201.png)
-
-![Untitled](Neovim%204e2a476d161641fb8c71757ce3dae13a/Untitled%202.png)
-
-![Untitled](Neovim%204e2a476d161641fb8c71757ce3dae13a/Untitled%203.png)
+![1](https://user-images.githubusercontent.com/60380217/142715096-078b3cbd-f7a1-4426-a419-dd327bb8ce28.png)![2](https://user-images.githubusercontent.com/60380217/142715098-c8a51323-daa4-47aa-971e-fc3966d3b73f.png)
+![3](https://user-images.githubusercontent.com/60380217/142715100-bdb3ca58-bcaa-4640-ae7d-5605f736a432.png)![4](https://user-images.githubusercontent.com/60380217/142715101-b1e54d76-491d-4fe5-a4da-11e559b7c2b7.png)
 
 ## Installation
 
