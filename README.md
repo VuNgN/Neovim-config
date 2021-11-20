@@ -74,13 +74,17 @@ And install again:
 
 Press `Esc` key to switch to Normal mode, and then type `:w` to overwrite and `:so %` to source this file and type `:PlugInstall` to install plugins.
 
-Noted: 
+### Noted: 
 
 The fzf plugin has some dependencies: 
-
 - For syntax-highlighted preview, install [bat](https://github.com/sharkdp/bat)
 - If [delta](https://github.com/dandavison/delta) is available, `GF?`,
 `Commits` and `BCommits` will use it to format `git diff` output.
 - `Ag` requires [The Silver Searcher (ag)](https://github.com/ggreer/the_silver_searcher)
 - `Rg` requires [ripgrep (rg)](https://github.com/BurntSushi/ripgrep)
 - `Tags` and `Helptags` require Perl
+
+If Vim-hexokinase error "needs to updating"  like that
+![](https://user-images.githubusercontent.com/5801052/103404265-3ba57500-4b53-11eb-928c-deff22e2b133.png)
+- Go to directory where Hexokinase in that like  *~/.config/nvim/plugged/vim-hexokinase* using the `cd` command.
+- Run command `make hexokinase` . **DONE !**
