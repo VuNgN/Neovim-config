@@ -69,7 +69,10 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
 " ES7 React/Redux/GraphQL/React-Native snippets
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
-
+" Icon for nerdtree
+Plug 'ryanoasis/vim-devicons'
+" Termimal
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 
@@ -159,6 +162,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 0 "1 to show buffer no.
 hi! Normal ctermbg=NONE guibg=NONE 
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
+" Set floaterm window's background to black
+hi Floaterm guibg=black
+" Set floating window border line color to cyan, and background to orange
+hi FloatermBorder guibg=#2f5d50 guifg=#800080
+
 "let g:onedark_hide_endofbuffer=1
 "let g:onedark_terminal_italics=1
 "let g:onedark_termcolors=256
@@ -245,6 +253,12 @@ let g:prettier#config#require_pragma = 'false'
 " lf|crlf|cr|all
 " defaut: 'lf'
 let g:prettier#config#end_of_line = get(g:, 'prettier#config#end_of_line', 'lf')
+
+" Terminator
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F12>'
 
 " nmap ght <Plug>(GitGutterToggle) 
 nmap ghp <Plug>(GitGutterPreviewHunk) 
