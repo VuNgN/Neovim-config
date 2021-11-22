@@ -20,6 +20,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " explore sidebar to see folder & files in project
 Plug 'scrooloose/nerdtree'
+"Plug 'tsony-tsonev/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'scrooloose/nerdcommenter'
 " show info at statusline 
 Plug 'vim-airline/vim-airline'
 " auto close tag, type `<table` then `>>` will be 
@@ -73,6 +77,8 @@ Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --f
 Plug 'ryanoasis/vim-devicons'
 " Termimal
 Plug 'voldikss/vim-floaterm'
+" Tmux
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 
@@ -154,6 +160,23 @@ let g:airline_powerline_fonts = 1
 " https://jdhao.github.io/2018/09/29/Switching_buffers_quickly_Neovim/
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 0 "1 to show buffer no.
+
+"if !exists('g:airline_symbols')
+  "let g:airline_symbols = {}
+"endif
+  
+""" powerline symbols
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = 'ln'
+"let g:airline_symbols.maxlinenr = ''
+"let g:airline_symbols.dirty='⚡'
+"let g:airline_symbols.colnr='col'"
+
 
 " hightlight comment in italic 
 " hi Comment cterm=italic
@@ -255,9 +278,9 @@ let g:prettier#config#require_pragma = 'false'
 let g:prettier#config#end_of_line = get(g:, 'prettier#config#end_of_line', 'lf')
 
 " Terminator
-let g:floaterm_keymap_new    = '<F7>'
-let g:floaterm_keymap_prev   = '<F8>'
-let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_new    = '<F9>'
+let g:floaterm_keymap_prev   = '<F10>'
+let g:floaterm_keymap_next   = '<F11>'
 let g:floaterm_keymap_toggle = '<F12>'
 
 " nmap ght <Plug>(GitGutterToggle) 
@@ -505,13 +528,29 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Tmux mapping
+"let g:tmux_navigator_no_mappings = 1
+
+"nnoremap <silent> <c-b>% :TmuxNavigateLeft<cr>
+"nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
+"nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
+"nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
+"nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+" Use K to show documentation in preview window
+nnoremap <silent> sd :call <SID>show_documentation()<CR>
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
+" Comment code
+vmap <silent> <C-_> <plug>NERDCommenterToggle
+nmap <silent> <C-_> <plug>NERDCommenterToggle
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
@@ -574,4 +613,12 @@ inoremap <silent><expr> <cr> "\<c-g>u\<CR>"
 " select range by `v` then to fold type zf and unfold is stand at fold area
 " then type zo 
 set foldmethod=marker
- 
+
+" vim-prettier
+"let g:prettier#quickfix_enabled = 0
+"let g:prettier#quickfix_auto_focus = 0
+" prettier command for coc
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" run prettier on save
+"let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
