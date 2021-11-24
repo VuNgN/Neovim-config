@@ -234,48 +234,48 @@ let g:gitgutter_map_keys = 0
 " Prettier 
 "
 " Enable auto formatting of files that have "@format" or "@prettier" tag
-let g:prettier#autoformat = 1
+"let g:prettier#autoformat = 1
 " Allow auto formatting for files without "@format" or "@prettier" tag
-let g:prettier#autoformat_require_pragma = 0
+"let g:prettier#autoformat_require_pragma = 0
 " Max line length that prettier will wrap on: a number or 'auto' (use
 " textwidth).
 " default: 'auto'
-let g:prettier#config#print_width = 'auto'
+"let g:prettier#config#print_width = 'auto'
 
 " number of spaces per indentation level: a number or 'auto' (use
 " softtabstop)
 " default: 'auto'
-let g:prettier#config#tab_width = 'auto'
+"let g:prettier#config#tab_width = 'auto'
 
 " use tabs instead of spaces: true, false, or auto (use the expandtab setting).
 " default: 'auto'
-let g:prettier#config#use_tabs = 'auto'
+"let g:prettier#config#use_tabs = 'auto'
 
 " flow|babylon|typescript|css|less|scss|json|graphql|markdown or empty string
 " (let prettier choose).
 " default: ''
-let g:prettier#config#parser = ''
+"let g:prettier#config#parser = ''
 
 " cli-override|file-override|prefer-file
 " default: 'file-override'
-let g:prettier#config#config_precedence = 'file-override'
+"let g:prettier#config#config_precedence = 'file-override'
 
 " always|never|preserve
 " default: 'preserve'
-let g:prettier#config#prose_wrap = 'preserve'
+"let g:prettier#config#prose_wrap = 'preserve'
 
 " css|strict|ignore
 " default: 'css'
-let g:prettier#config#html_whitespace_sensitivity = 'css'
+"let g:prettier#config#html_whitespace_sensitivity = 'css'
 
 " false|true
 " default: 'false'
-let g:prettier#config#require_pragma = 'false'
+"let g:prettier#config#require_pragma = 'false'
 
 " Define the flavor of line endings
 " lf|crlf|cr|all
 " defaut: 'lf'
-let g:prettier#config#end_of_line = get(g:, 'prettier#config#end_of_line', 'lf')
+"let g:prettier#config#end_of_line = get(g:, 'prettier#config#end_of_line', 'lf')
 
 " Terminator
 let g:floaterm_keymap_new    = '<F9>'
@@ -396,6 +396,16 @@ nnoremap U <C-R>
 " Better nav for omnicomplete when go up and down in menu popup
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+
+" Type Ctrl + u to exit insert mode 
+inoremap <C-u> <ESC> 
+" provide hjkl movements in Insert mode via the <Alt> modifier key
+inoremap <A-h> <C-o>h
+inoremap <A-j> <C-o>j
+inoremap <A-k> <C-o>k
+inoremap <A-l> <C-o>l
+inoremap <A-b> <C-o>b
+inoremap <A-w> <C-o>w
 
 " Use alt + hjkl to resize windows
 " nnoremap <M-j>    :resize -2<CR>
