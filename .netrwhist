@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
-let g:netrw_dirhist_5='/home/vu/Documents/workspace/reactnative/AwesomeProject'
-let g:netrw_dirhist_4='/opt/lampp/htdocs/restaurant/admin'
-let g:netrw_dirhist_3='/opt/lampp/htdocs/restaurant'
-let g:netrw_dirhist_2='/opt/lampp/htdocs/restaurant/config'
-let g:netrw_dirhist_1='/opt/lampp/htdocs/restaurant'
