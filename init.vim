@@ -79,6 +79,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'voldikss/vim-floaterm'
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
+" Html with emmet 
+Plug 'mattn/emmet-vim'
+" gruvbox-material and gruvbox theme installation
+Plug 'sainnhe/gruvbox-material'
+Plug 'morhetz/gruvbox'
+" buftabline: buffer tabs on bar
+Plug 'ap/vim-buftabline'
 call plug#end()
 
 
@@ -153,9 +160,41 @@ set smartcase                             " depend of pattern lower or Upper
 "" Visual, Theme Settings
 "*****************************************************************************
 " syntax on
-colorscheme dracula
 
-" turn on airline powerline symbol by downloand install fonts https://github.com/powerline/fonts via ./install.sh in folder fonts-master https://www.youtube.com/watch?v=-r6Sj70Ziws&ab_channel=TheFrugalComputerGuy
+" Important!!
+"if has('termguicolors')
+  "set termguicolors
+"endif
+"let g:gruvbox_termcolors=16
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+"For dark version.
+set background=dark
+" For light version.
+"set background=light
+
+colorscheme gruvbox           "dracula, gruvbox-material 
+
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+"let g:gruvbox_material_background = 'medium'
+
+" turn on airline powerlin symbol by downloand install fonts https://github.com/powerline/fonts via ./install.sh in folder fonts-master https://www.youtube.com/watch?v=-r6Sj70Ziws&ab_channel=TheFrugalComputerGuy
 let g:airline_powerline_fonts = 1
 " https://jdhao.github.io/2018/09/29/Switching_buffers_quickly_Neovim/
 let g:airline#extensions#tabline#enabled = 0
@@ -182,13 +221,13 @@ let g:airline#extensions#tabline#buffer_nr_show = 0 "1 to show buffer no.
 " hi Comment cterm=italic
 
 " hightlight background transparent background for nvim
-hi! Normal ctermbg=NONE guibg=NONE 
-hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+"hi! Normal ctermbg=NONE guibg=NONE 
+"hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
 " Set floaterm window's background to black
-hi Floaterm guibg=black
+hi Floaterm guibg=#0F4C75
 " Set floating window border line color to cyan, and background to orange
-hi FloatermBorder guibg=#2f5d50 guifg=#800080
+hi FloatermBorder guibg=#1B262C guifg=#BBE1FA
 
 "let g:onedark_hide_endofbuffer=1
 "let g:onedark_terminal_italics=1
@@ -320,6 +359,7 @@ nmap <C-m> <Plug>MarkdownPreview
 
 " set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
+
 "*****************************************************************************
 "" Abbreviations
 "*****************************************************************************
@@ -376,7 +416,7 @@ autocmd FileType scss setl iskeyword+=@-@
 " Map <leader> to <space>
 let mapleader=' '   
 " map redo ctrl + r 
-nnoremap U <C-R>
+" nnoremap U <C-R>
 
 " Basic mappings
 " inoremap jj <ESC>
@@ -414,14 +454,14 @@ inoremap <A-w> <C-o>w
 " nnoremap <M-l>    :vertical resize +2<CR>
 
 " TAB in general mode will move to text buffer
-nnoremap <TAB> :bnext<CR>
+" nnoremap <TAB> :bnext<CR>
 " SHIFT-TAB will go back
-nnoremap <S-TAB> :bprevious<CR>
+" nnoremap <S-TAB> :bprevious<CR>
 " Better window navigation ctrl+h,j,k,l instead of ctrl+w+h,j,k,l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 
 " nnoremap <Leader>o o<Esc>^Da
 " nnoremap <Leader>O O<Esc>^Da
@@ -527,7 +567,7 @@ nmap <silent>]g <Plug>(coc-diagnostic-next)
 
 
 " Use H to show documentation in preview window when hover.
-nnoremap <silent> H :call <SID>show_documentation()<CR>
+nnoremap <silent> sd :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -561,6 +601,50 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Comment code
 vmap <silent> <C-_> <plug>NERDCommenterToggle
 nmap <silent> <C-_> <plug>NERDCommenterToggle
+
+" Tab mapping
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Emmet mode 
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key=',,'
+
+" Buftabline
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
+" To switch buffers by their ordinal number (|g:buftabline_numbers| = 2) you can map keys to the |<Plug>| mappings provided by this plugin: >
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
+
+"On Mac OS, you probably want to use a |<D-| mapping instead, which will emulate the standard Cmd+1, Cmd+2, etc. keybindings for this feature: >
+"nmap <D-1> <Plug>BufTabLine.Go(1)
+"nmap <D-2> <Plug>BufTabLine.Go(2)
+"nmap <D-3> <Plug>BufTabLine.Go(3)
+"nmap <D-4> <Plug>BufTabLine.Go(4)
+"nmap <D-5> <Plug>BufTabLine.Go(5)
+"nmap <D-6> <Plug>BufTabLine.Go(6)
+"nmap <D-7> <Plug>BufTabLine.Go(7)
+"nmap <D-8> <Plug>BufTabLine.Go(8)
+"nmap <D-9> <Plug>BufTabLine.Go(9)
+"nmap <D-0> <Plug>BufTabLine.Go(10)
+ "or to go to the last buffer:
+"nmap <D-0> <Plug>BufTabLine.Go(-1)
+
+
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
