@@ -86,6 +86,8 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 " buftabline: buffer tabs on bar
 Plug 'ap/vim-buftabline'
+" multi cursors
+Plug 'mg979/vim-visual-multi', {'branch': 'test'}
 call plug#end()
 
 
@@ -225,7 +227,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 0 "1 to show buffer no.
 "hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
 " Set floaterm window's background to black
-hi Floaterm guibg=#0F4C75
+hi Floaterm guibg=#323232
 " Set floating window border line color to cyan, and background to orange
 hi FloatermBorder guibg=#1B262C guifg=#BBE1FA
 
